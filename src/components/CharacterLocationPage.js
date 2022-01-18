@@ -18,7 +18,11 @@ export const CharacterLocationPage = () => {
   return (
     <>
       {locationLoading || charLoading ? <Loading /> : null}
-      {locationError || charError ? <Error /> : null}
+      {locationError ? (
+        <Error e={locationError} />
+      ) : charError ? (
+        <Error e={charError} />
+      ) : null}
       {locationData && char ? (
         <CharacterLocation character={char} location={locationData} />
       ) : null}
