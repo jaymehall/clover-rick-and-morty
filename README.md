@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+## What architectural decisions did you make and why? Elaborate on strengths and weaknesses.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- For the creation of the app I used create-react-app so that I could get the project running as quickly as possible. I understand that because of its ease of use there is a lot of abstraction and may add unnecessary dependencies.
 
-## Available Scripts
+- For state management I used the Context API for scalability and readability. I created a custom hook in order to retrieve the location of the character with the characterId being passed in. In my custom hook and context I also created a cache so that I wouldn't have to hit the endpoint if it was already in the cache, for performance and in the event the server had rate limiting. The disadvantages to using the Context API in this project is that it is unnecessary because of how simple the application is. There aren't a lot of components so prop drilling wouldn't be an issue.
 
-In the project directory, you can run:
+- I organized my components by functionality and wherever possible I made components dumb/stateless. Ideally my components are only responsible for doing one thing. If at any point within a component I was conditionally rendering something, I take a step back and see it would make more sense to have it's own component for readability. The drawback to this approach would mean that there would be a lot of components.
 
-### `npm start`
+- I used react-router-dom for my routes. I know that react-router-dom is widely supported and used which was drove my decision for using it. Since there are really only 2 routes for this application, using react-router-dom is likely not necessary and costs extra overhead to use.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How did you handle error cases? Eg: botched response, no response, etc.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- I created an error state for every API call. If the return status was 400 or greater then I would set the error state and render that using a error component.
 
-### `npm test`
+## How did you test the app?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- I used react testing library to test CharacterLocation component to ensure that the correct data was being displayed through the props.
+- For the majority of my components I manually tested.
 
-### `npm run build`
+## What third party libraries/ external code snippets did you use, if any?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- react-router-dom and mui
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## If you had more time, what would you have done differently?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- I would have setup more tests for every component, primarily my CharactersProvider and the useCharacterLocation hook.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The styling currently is very objective and lacks visual aesthetics, if more time was given I would have requested a spec so that I could model the app after that.
