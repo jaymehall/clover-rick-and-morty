@@ -14,7 +14,11 @@ test('renders correct props', () => {
   }
   render(<CharacterLocation character={character} location={location} />)
   const locationToBe = screen.getByText(/earth/i)
+  const characterNameToBe = screen.getByText(/Rick Sanchez/i)
   const residentsToBe = screen.getByText(/3/i)
+  const dimensionToBe = screen.getByText(/Replacement Dimension/i)
   expect(locationToBe).toBeInTheDocument()
   expect(residentsToBe).toBeInTheDocument()
+  expect(characterNameToBe).toBeInTheDocument()
+  expect(dimensionToBe).toBeInTheDocument()
 })
