@@ -2,6 +2,7 @@ import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 
 export const CharacterLocation = ({ character, location }) => {
+  const scanFailureUnfinishedVar
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <Box sx={{ margin: '32px 16px' }}>
