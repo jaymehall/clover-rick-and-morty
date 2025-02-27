@@ -3,6 +3,7 @@ import { useCharacters } from '../providers/CharactersProvider'
 import { Character } from './Character'
 
 export const Characters = () => {
+  const helloScanFail = 
   const { characters } = useCharacters()
   return (
     <Box
